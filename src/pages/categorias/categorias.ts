@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CategoriaService } from '../../services/domain/categoria.service';
 import { CategoriaDTO } from '../../models/Categoria.DTO';
 import { API_CONFIG } from '../../config/api.config';
+import { PREFIX_CONSTANT } from '../../enums/prefix.enum';
 
 @IonicPage()
 @Component({
@@ -11,6 +12,7 @@ import { API_CONFIG } from '../../config/api.config';
 })
 export class CategoriasPage {
 
+  prefix: string = PREFIX_CONSTANT.CATEGORIA;
   items: CategoriaDTO[];
   bucketUrl: string = API_CONFIG.bucketBaseUrl;
 
