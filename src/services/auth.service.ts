@@ -33,4 +33,12 @@ export class AuthService {
     logout() {
         this.storage.setUserLocal(null);
     }
+
+    refreshToken(credenciais: CredenciaisDTO) {
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/auth/refresh_token`,
+            {},
+            { observe: 'response', responseType: 'text' }
+        );
+    }
 }
