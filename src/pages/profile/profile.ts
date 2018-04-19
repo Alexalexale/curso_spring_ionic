@@ -36,7 +36,7 @@ export class ProfilePage {
   getImageIfExists() {
     this.clienteService.getImagemFromBucket(this.cliente.id).subscribe(response => {
       this.cliente.imageUrl = `${API_CONFIG.bucketBaseUrl}/${PREFIX_CONSTANT.CLIENTE + this.cliente.id}.jpg`;
-    })
+    }, erros => { });
   }
 
 }
