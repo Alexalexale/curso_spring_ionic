@@ -1,18 +1,18 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { API_CONFIG } from "../../config/api.config";
-import { CategoriaDTO } from "../../models/categoria.dto";
+import { CidadeDTO } from "../../models/cidade.dto";
 import { Observable } from "rxjs/Rx";
 
 @Injectable()
-export class CategoriaService {
+export class CidadeService {
 
     constructor(public http: HttpClient) {
 
     }
 
-    findAll(): Observable<CategoriaDTO[]> {
-        return this.http.get<CategoriaDTO[]>(`${API_CONFIG.baseUrl}/categorias`);
+    findAll(estadoId: string): Observable<CidadeDTO[]> {
+        return this.http.get<CidadeDTO[]>(`${API_CONFIG.baseUrl}/estados/${estadoId}/cidades`);
     }
 
 }
