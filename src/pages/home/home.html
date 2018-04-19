@@ -14,11 +14,8 @@
       <ion-label stacked>Password</ion-label>
       <ion-input [(ngModel)]="credenciais.senha" name="senha" type="password"></ion-input>
     </ion-item>
-
     <button ion-button block (click)="login()">Entrar</button>
-
   </form>
-
-  <button ion-button block outline>Entrar</button>
+  <button ion-button block outline (click)="signup()" >Registrar</button>
 
 </ion-content>
