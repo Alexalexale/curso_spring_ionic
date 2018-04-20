@@ -25,10 +25,7 @@ export class CartService {
 
     addProduto(produto: ProdutoDTO): Cart {
         let cart = this.getCart();
-        console.log(cart);
-        console.log(produto);
         let indxItem = cart.items.findIndex(prod => prod.produto.id == produto.id);
-        console.log(indxItem);
         if (indxItem == -1) {
             let cartItem: CartItem = { produto: produto, quantidade: 1 };
             cart.items.push(cartItem);
@@ -37,5 +34,45 @@ export class CartService {
         }
         this.storage.setCart(cart);
         return cart;
+    }
+
+    removeProduto(produto: ProdutoDTO): Cart {
+        let cart = this.getCart();
+        let indxItem = cart.items.findIndex(prod => prod.produto.id == produto.id);
+        console.log(indxItem);
+        if (indxItem != -1) {
+            cart.items.splice(indxItem);
+        }
+        this.storage.setCart(cart);
+        return cart;
+    }
+
+    increaseQuantity(produto: ProdutoDTO): Cart {
+        let cart = this.getCart();
+        let indxItem = cart.items.findIndex(prod => prod.produto.id == produto.id);
+        console.log(indxItem);
+        if (indxItem != -1) {
+            cart.items[indxItem].quantidade++;
+        }
+        this.storage.setCart(cart);
+        return cart;
+    }
+
+    decreaseQuantity(produto: ProdutoDTO): Cart {
+        let cart = this.getCart();
+        let indxItem = cart.items.findIndex(prod => prod.produto.id == produto.id);
+        console.log(indxItem);
+        if (indxItem != -1) {
+            cart.items[indxItem].quantidade--;
+            if (cart.items[indxItem].quantidade < 1) {
+                cart = this.removeProduto(produto);
+            }
+        }
+        this.storage.setCart(cart);
+        return cart;
+    }
+
+    total(): number {
+        return this.getCart().items.map(carItem => carItem.quantidade * carItem.produto.preco).reduce((valorAnt, valorAtu) => valorAnt + valorAtu, 0);
     }
 }

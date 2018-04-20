@@ -5,6 +5,7 @@ import { ProdutoService } from '../../services/domain/produto.service';
 import { PREFIX_CONSTANT } from '../../enums/prefix.enum';
 import { API_CONFIG } from '../../config/api.config';
 import { CartService } from '../../services/domain/cart.service';
+import { ProdutoDTO } from '../../models/produto.dto';
 
 @IonicPage()
 @Component({
@@ -29,4 +30,23 @@ export class CartPage {
     });
   }
 
+  removeProduto(produto: ProdutoDTO) {
+    this.cartItems = this.cartService.removeProduto(produto).items;
+  }
+
+  increaseQuantity(produto: ProdutoDTO) {
+    this.cartItems = this.cartService.increaseQuantity(produto).items;
+  }
+
+  decreaseQuantity(produto: ProdutoDTO) {
+    this.cartItems = this.cartService.decreaseQuantity(produto).items;
+  }
+
+  total(): number {
+    return this.cartService.total();
+  }
+
+  goOn() {
+    this.navCtrl.setRoot('CategoriasPage');
+  }
 }
