@@ -51,6 +51,6 @@ export class CartPage {
   }
 
   checkout() {
-    this.navCtrl.push('PickAddressPaga');
+    this.navCtrl.push('PickAddressPage');
   }
 }
