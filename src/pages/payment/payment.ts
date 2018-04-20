@@ -18,9 +18,9 @@ export class PaymentPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
 
-    this.pedido = navParams.get('pedido');
+    this.pedido = this.navParams.get('pedido');
 
-    this.formGroup = formBuilder.group({
+    this.formGroup = this.formBuilder.group({
       numeroParcelas: [1, Validators.required],
       "@type": ["pagamentoCartao", Validators.required]
     });
@@ -28,6 +28,6 @@ export class PaymentPage {
 
   nextPage() {
     this.pedido.pagamento = this.formGroup.value;
-    console.log(this.pedido);
+    this.navCtrl.setRoot('OrderConfirmationPage', { pedido: this.pedido });
   }
 }
